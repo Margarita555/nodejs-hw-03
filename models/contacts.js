@@ -37,10 +37,20 @@ const addContact = async (body) => {
   const newContact = { id: v4(), ...body };
   contacts.push(newContact);
   await updateContacts(contacts);
+
   return newContact;
 };
 
-const updateContact = async (contactId, body) => {};
+const updateContact = async (contactId, body) => {
+  const contacts = await listContacts();
+  const index = contacts.findIndex((item) => item.id === contactId);
+  if (index === -1) {
+    return null;
+  }
+  contacts[index] = { ...contacts[index], ...body };
+  await updateContacts(contacts);
+  return contacts[index];
+};
 
 module.exports = {
   listContacts,
