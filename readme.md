@@ -1,3 +1,8 @@
+<!-- pepsy777 -->
+<!-- ypotEac8vWyF52OY -->
+<!-- mongodb+srv://Rita:<password>@cluster0.bz17iha.mongodb.net/?retryWrites=true&w=majority -->
+<!-- mongodb+srv://Rita:ypotEac8vWyF52OY@cluster0.bz17iha.mongodb.net/?retryWrites=true&w=majority -->
+
 ## GoIT Node.js Course Template Homework
 
 Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
