@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-// const { Schema, model } = require("mongoose");
-const { Schema, model } = mongoose;
-// const Joi = require("joi");
+// const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
+// const { Schema, model } = mongoose;
+const Joi = require("joi");
 
 // const contactSchema = Schema(
 const contactSchema = new Schema(
@@ -15,42 +15,48 @@ const contactSchema = new Schema(
     },
     phone: {
       type: String,
+      // match: /^[0-9]{9}$/
     },
     favorite: {
       type: Boolean,
-      default: false,
+      // default: false,
     },
   },
   {
     versionKey: false,
     timestamps: true,
-    toJSON: {
-      virtuals: true,
-      transform: (doc, ret) => {
-        delete ret._id;
-        delete ret.favorite;
-        return ret;
-      },
-    },
-    toObject: { virtuals: true },
+    // toJSON: {
+    //   virtuals: true,
+    //   transform: (doc, ret) => {
+    //     delete ret._id;
+    //     delete ret.favorite;
+    //     return ret;
+    //   },
+    // },
+    // toObject: { virtuals: true },
   }
 );
 
-// const joiSchema = Joi.object({
-//   name: Joi.string().required(),
-//   email: Joi.string().required(),
-//   phone: Joi.string().required(),
-//   favorite: Joi.bool().required(),
-// });
+const contactJoiSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().required(),
+  phone: Joi.string().required(),
+  favorite: Joi.bool(),
+});
+
+const favoriteJoiSchema = Joi.object({
+  favorite: Joi.bool().required(),
+});
 
 const Contact = model("contact", contactSchema);
 
-// module.exports = {
-//   Contact,
-//   joiSchema,
-// };
+module.exports = {
+  Contact,
+  contactJoiSchema,
+  favoriteJoiSchema,
+};
 
-module.exports = Contact;
+// module.exports = Contact;
 // const fs = require("fs/promises");
 // const { v4 } = require("uuid");
 // const contactsPath = require("./contactsPath");
